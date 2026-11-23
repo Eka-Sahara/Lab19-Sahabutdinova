@@ -1,40 +1,126 @@
-﻿Console.Write("Введите строку: ");
-string text = Console.ReadLine() ?? "";
-Console.WriteLine(CountWords("Я изучаю C#"));
-Console.WriteLine(CountWords("  кот  дом  "));
-Console.WriteLine(CountWords(""));
-Console.WriteLine(CountWords("   "));
+﻿// Console.Write("Введите строку: ");
+// string text = Console.ReadLine() ?? "";
+// Console.WriteLine(CountWords("Я изучаю C#"));
+// Console.WriteLine(CountWords("  кот  дом  "));
+// Console.WriteLine(CountWords(""));
+// Console.WriteLine(CountWords("   "));
 
-System.Console.WriteLine("\n>>> Анализ строки <<<");
-System.Console.WriteLine($"Исходная строка: [{text}]");
-System.Console.WriteLine($"Длина: {text.Length}");
-System.Console.WriteLine($"Букв: {CountLetters(text)}");
-System.Console.WriteLine($"Цифр: {CountDigits(text)}");
-System.Console.WriteLine($"Пробелов: {CountSpaces(text)}");
-System.Console.WriteLine($"Слов: {CountWords(text)}");
-System.Console.WriteLine($"Без пробелов по краям: [{text.Trim()}]");
-System.Console.WriteLine($"Верхний регистр: [{text.ToUpper()}]");
-System.Console.WriteLine($"Замена пробелов: [{text.Replace(' ', '_')}]");
+// System.Console.WriteLine("\n>>> Анализ строки <<<");
+// System.Console.WriteLine($"Исходная строка: [{text}]");
+// System.Console.WriteLine($"Длина: {text.Length}");
+// System.Console.WriteLine($"Букв: {CountLetters(text)}");
+// System.Console.WriteLine($"Цифр: {CountDigits(text)}");
+// System.Console.WriteLine($"Пробелов: {CountSpaces(text)}");
+// System.Console.WriteLine($"Слов: {CountWords(text)}");
+// System.Console.WriteLine($"Без пробелов по краям: [{text.Trim()}]");
+// System.Console.WriteLine($"Верхний регистр: [{text.ToUpper()}]");
+// System.Console.WriteLine($"Замена пробелов: [{text.Replace(' ', '_')}]");
 
-Console.Write("\nВведите один символ для поиска: ");
-char target = Convert.ToChar(Console.ReadLine());
-int targetIndex = FindCharacterIndex(text, target);
+// Console.Write("\nВведите один символ для поиска: ");
+// char target = Convert.ToChar(Console.ReadLine());
+// int targetIndex = FindCharacterIndex(text, target);
 
-if (targetIndex != -1)
-{
-    System.Console.WriteLine($"Первый индекс: {targetIndex}");
-} else
-{
-    System.Console.WriteLine("Символ не найден");
-}
+// if (targetIndex != -1)
+// {
+//     System.Console.WriteLine($"Первый индекс: {targetIndex}");
+// } else
+// {
+//     System.Console.WriteLine("Символ не найден");
+// }
 
-int CountCharacter(string text, char target)
+// int CountCharacter(string text, char target)
+// {
+//     int count = 0;
+
+//     for (int i = 0; i < text.Length; i++)
+//     {
+//         if (text[i] == target)
+//         {
+//             count++;
+//         }
+//     }
+
+//     return count;
+// }
+
+// int CountLetters(string text)
+// {
+//     int count = 0;
+
+//     foreach (char symbol in text)
+//     {
+//         if (char.IsLetter(symbol))
+//         {
+//             count++;
+//         }
+//     }
+
+//     return count;
+// }
+
+// int CountDigits(string text)
+// {
+//     int count = 0;
+
+//     foreach (char symbol in text)
+//     {
+//         if (char.IsDigit(symbol))
+//         {
+//             count++;
+//         }
+//     }
+
+//     return count;
+// }
+
+// int FindCharacterIndex(string text, char target)
+// {
+//     for (int i = 0; i < text.Length; i++)
+//     {
+//         if (text[i] == target)
+//         {
+//             return i;
+//         }
+//     }
+
+//     return -1;
+// }
+
+// int CountWords(string text)
+// {
+//     string[] words = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+//     return words.Length;
+// }
+
+// int CountSpaces(string text)
+// {
+//     int count = 0;
+
+//     foreach (char symbol in text)
+//     {
+//         if (symbol == ' ')
+//         {
+//             count++;
+//         }
+//     }
+
+//     return count;
+// }
+
+// Вариант 3. Слова без Split();
+
+System.Console.WriteLine(CountWordsManually("  кот  дом  "));
+System.Console.WriteLine(CountWordsManually("C#"));
+System.Console.WriteLine(CountWordsManually("   "));
+System.Console.WriteLine(CountWordsManually(""));
+
+int CountWordsManually(string text)
 {
     int count = 0;
 
     for (int i = 0; i < text.Length; i++)
     {
-        if (text[i] == target)
+        if (text[i] != ' ' && (i == 0 || text[i - 1] == ' '))
         {
             count++;
         }
@@ -42,68 +128,3 @@ int CountCharacter(string text, char target)
 
     return count;
 }
-
-int CountLetters(string text)
-{
-    int count = 0;
-
-    foreach (char symbol in text)
-    {
-        if (char.IsLetter(symbol))
-        {
-            count++;
-        }
-    }
-
-    return count;
-}
-
-int CountDigits(string text)
-{
-    int count = 0;
-
-    foreach (char symbol in text)
-    {
-        if (char.IsDigit(symbol))
-        {
-            count++;
-        }
-    }
-
-    return count;
-}
-
-int FindCharacterIndex(string text, char target)
-{
-    for (int i = 0; i < text.Length; i++)
-    {
-        if (text[i] == target)
-        {
-            return i;
-        }
-    }
-
-    return -1;
-}
-
-int CountWords(string text)
-{
-    string[] words = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-    return words.Length;
-}
-
-int CountSpaces(string text)
-{
-    int count = 0;
-
-    foreach (char symbol in text)
-    {
-        if (symbol == ' ')
-        {
-            count++;
-        }
-    }
-
-    return count;
-}
-
