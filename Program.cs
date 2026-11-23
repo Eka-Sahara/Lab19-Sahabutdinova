@@ -1,136 +1,109 @@
-﻿string text = "Код 2026";
+﻿Console.Write("Введите строку: ");
+string text = Console.ReadLine() ?? "";
+Console.WriteLine(CountWords("Я изучаю C#"));
+Console.WriteLine(CountWords("  кот  дом  "));
+Console.WriteLine(CountWords(""));
+Console.WriteLine(CountWords("   "));
 
-// System.Console.WriteLine(text.Length);
-// System.Console.WriteLine(text[0]);
-// System.Console.WriteLine(text[text.Length - 1]);
+System.Console.WriteLine("\n>>> Анализ строки <<<");
+System.Console.WriteLine($"Исходная строка: [{text}]");
+System.Console.WriteLine($"Длина: {text.Length}");
+System.Console.WriteLine($"Букв: {CountLetters(text)}");
+System.Console.WriteLine($"Цифр: {CountDigits(text)}");
+System.Console.WriteLine($"Пробелов: {CountSpaces(text)}");
+System.Console.WriteLine($"Слов: {CountWords(text)}");
+System.Console.WriteLine($"Без пробелов по краям: [{text.Trim()}]");
+System.Console.WriteLine($"Верхний регистр: [{text.ToUpper()}]");
+System.Console.WriteLine($"Замена пробелов: [{text.Replace(' ', '_')}]");
 
-// if (text.Length > 0)
-// {
-//     System.Console.WriteLine($"Первый символ: {text[0]}");
-// }
+Console.Write("\nВведите один символ для поиска: ");
+char target = Convert.ToChar(Console.ReadLine());
+int targetIndex = FindCharacterIndex(text, target);
 
-// int CountCharacter(string text, char target)
-// {
-//     int count = 0;
+if (targetIndex != -1)
+{
+    System.Console.WriteLine($"Первый индекс: {targetIndex}");
+} else
+{
+    System.Console.WriteLine("Символ не найден");
+}
 
-//     foreach (char symbol in text)
-//     {
-//         if (symbol == target)
-//         {
-//             count++;
-//         }
-//     }
+int CountCharacter(string text, char target)
+{
+    int count = 0;
 
-//     return count;
-// }
+    for (int i = 0; i < text.Length; i++)
+    {
+        if (text[i] == target)
+        {
+            count++;
+        }
+    }
 
-// System.Console.WriteLine(CountCharacter("мама", 'м'));
-// System.Console.WriteLine(CountCharacter("Код 2026", ' '));
-// System.Console.WriteLine(CountCharacter("", 'а'));
+    return count;
+}
 
-// int CountCharacter(string text, char target)
-// {
-//     int count = 0;
+int CountLetters(string text)
+{
+    int count = 0;
 
-//     for (int i = 0; i < text.Length; i++)
-//     {
-//         if (text[i] == target)
-//         {
-//             count++;
-//         }
-//     }
+    foreach (char symbol in text)
+    {
+        if (char.IsLetter(symbol))
+        {
+            count++;
+        }
+    }
 
-//     return count;
-// }
+    return count;
+}
 
-// System.Console.WriteLine(CountCharacter("мама", 'м'));
-// System.Console.WriteLine(CountCharacter("", 'м'));
+int CountDigits(string text)
+{
+    int count = 0;
 
-// int CountDigits(string text)
-// {
-//     int count = 0;
+    foreach (char symbol in text)
+    {
+        if (char.IsDigit(symbol))
+        {
+            count++;
+        }
+    }
 
-//     foreach (char symbol in text)
-//     {
-//         if (char.IsDigit(symbol))
-//         {
-//             count++;
-//         }
-//     }
+    return count;
+}
 
-//     return count;
-// }
+int FindCharacterIndex(string text, char target)
+{
+    for (int i = 0; i < text.Length; i++)
+    {
+        if (text[i] == target)
+        {
+            return i;
+        }
+    }
 
-// int CountLetters(string text)
-// {
-//     int count = 0;
+    return -1;
+}
 
-//     foreach (char symbol in text)
-//     {
-//         if (char.IsLetter(symbol))
-//         {
-//             count++;
-//         }
-//     }
+int CountWords(string text)
+{
+    string[] words = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+    return words.Length;
+}
 
-//     return count;
-// }
+int CountSpaces(string text)
+{
+    int count = 0;
 
-// Console.WriteLine(CountDigits("Код 2026!"));
-// Console.WriteLine(CountLetters("Код 2026!"));
+    foreach (char symbol in text)
+    {
+        if (symbol == ' ')
+        {
+            count++;
+        }
+    }
 
-// int CountDigits(string text)
-// {
-//     int count = 0;
+    return count;
+}
 
-//     foreach (char symbol in text)
-//     {
-//         if (char.IsDigit(symbol))
-//         {
-//             count++;
-//         }
-//     }
-
-//     return count;
-// }
-
-// Console.WriteLine(CountDigits("A2B3"));
-
-// int FindCharacterIndex(string text, char target)
-// {
-//     for (int i = 0; i < text.Length; i++)
-//     {
-//         if (text[i] == target)
-//         {
-//             return i;
-//         }
-//     }
-
-//     return -1;
-// }
-
-// Console.WriteLine(FindCharacterIndex("banana", 'a'));
-// Console.WriteLine(FindCharacterIndex("banana", 'b'));
-// Console.WriteLine(FindCharacterIndex("banana", 'z'));
-// Console.WriteLine(FindCharacterIndex("", 'a'));
-
-// int FindCharacterIndex(string text, char target)
-// {
-//     int index = -1;
-
-//     for (int i = 0; i < text.Length; i++)
-//     {
-//         if (text[i] == target)
-//         {
-//             index = i;
-//             break;
-//         }
-//     }
-
-//     return index;
-// }
-
-// System.Console.WriteLine(FindCharacterIndex("banana", 'a'));
-// Console.WriteLine(FindCharacterIndex("banana", 'b'));
-// Console.WriteLine(FindCharacterIndex("banana", 'z'));
-// Console.WriteLine(FindCharacterIndex("", 'a'));
